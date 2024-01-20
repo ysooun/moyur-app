@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link th:href="@{/css/join.css}" rel="stylesheet" />
+  <title>join</title>
+</head>
+<body>
+  <div class="container">
+    <button class="logo_btn" id="logo" th:onclick="'goToMainpage()'">
+      <img th:src="@{/image/logo.png}" alt="로고">
+    </button>
+    <form id="joinForm" th:action="@{/join}" method="post">
+      <input type="text" name="username" id="username" placeholder="아이디" autofocus required>
+      <input type="password" name="password" id="password" placeholder="비밀번호" required>
+      <input type="password" name="confirmPassword" id="confirmPassword" placeholder="비밀번호 확인" required>
+      <input type="email" name="email" id="email" placeholder="이메일" required>
+      <p th:text="${errorMessage}"></p>
+      <button class="join_btn">회원가입</button>
+    </form>
+  </div>
+</body>
+</html>

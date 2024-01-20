@@ -1,0 +1,99 @@
+body {
+  text-align: center;
+  background-color: white;
+  padding: 100px;
+  border-radius: 8px;
+}
+
+.container {
+  max-width: 300px;
+  margin: 0 auto;
+  padding: 20px;
+  border: 1px solid #ddd;
+  border-radius: 10px;
+}
+
+.logo_btn {
+  margin-bottom: 40px;
+  margin-top: 20px;
+  cursor: pointer;
+  border: transparent;
+  width: 100px;
+  height: 38px;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-bottom: 30px;
+}
+
+p {
+  margin-top: -4px;
+  margin-bottom: -4px;
+  text-align: left;
+  font-size: 12px; 
+  color: red; 
+}
+
+input[type="text"],
+input[type="password"] {
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.hidden {
+  display: none;
+}
+
+.visible {
+  display: block;
+}
+
+.login_btn {
+  font-size: 16px;
+  padding: 8px 15px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.login_btn:hover {
+  background-color: #0056b3;
+}
+
+.social-text {
+  font-size: 14px;
+  color: grey;
+}
+
+.social-links {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  margin-top: 20px;
+}
+
+.links {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 20px;
+}
+
+.links a {
+  color: grey;
+  text-decoration: none;
+  font-size: 12px;
+  margin-right: 20px;
+  margin-left: 20px;
+
+}
+
+.links a:hover {
+  text-decoration: underline;
+  cursor: pointer;
+}

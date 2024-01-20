@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link th:href="@{css/login.css}" rel="stylesheet" />
+  <title>Login</title>
+</head>
+<body>
+  <!-- Container -->
+  <div class="container">
+
+    <!-- Logo Button -->
+    <button class="logo_btn" id="logo" th:onclick="'goToMainpage()'">
+      <img th:src="@{/image/logo.png}" alt="로고">
+    </button>
+
+    <!-- Login Form -->
+    <form id="loginForm">
+      <input type="text" name="username" id="username" placeholder="아이디" autofocus required>
+      <input type="password" name="password" id="password" placeholder="비밀번호" required>
+      <p id="errorMessage"></p>
+      <button type="button" class="login_btn" onclick="submitLoginForm()">로그인</button>
+    </form>
+
+    <!-- Social Links -->
+    <div class="social-text">소셜계정으로 간편 가입하기</div>
+    <div class="social-links">
+      <a href="https://www.google.com">
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-google" viewBox="0 0 16 16"></svg>
+      </a>
+      <a href="https://www.instagram.com">
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-instagram" viewBox="0 0 16 16"></svg>
+      </a>
+      <a href="https://www.naver.com">
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-apple" viewBox="0 0 16 16"></svg>
+      </a>
+    </div>
+
+    <!-- Links -->
+    <div class="links">
+      <a th:href="@{/memberId}">아이디 찾기</a> 
+      <a th:href="@{/memberPw}">비밀번호 찾기</a> 
+      <a th:href="@{/join}">회원가입</a>
+    </div>
+  </div>
+
+  <!-- Scripts -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script>
+    function submitLoginForm() {
+      var username = $("#username").val();
+      var password = $("#password").val();
+
+      var formData = {
+        "username": username,
+        "password": password
+      };
+
+      $.ajax({
+        type: "POST",
+        url: "/login",
+        data: JSON.stringify(formData),
+        contentType: "application/json",
+        success: function(response) {
+          window.location.href = "/"; // 리다이렉션할 URL을 설정
+        },
+        error: function(error) {
+		  console.log(error.responseText);  // 콘솔에 에러 메시지 출력
+		  $("#errorMessage").text(error.responseText);
+		}
+      });
+    }
+  </script>
+</body>
+</html>

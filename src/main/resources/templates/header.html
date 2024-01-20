@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" th:href="@{/css/header.css}" />
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet" />
+  <title>header</title>
+</head>
+<body>
+  <header class="main_header">
+    <img th:src="@{/image/logo.png}" alt="로고">
+    <form id="logoutForm" th:action="@{/logout}" method="post">
+      <button class="btn_login" id="loginButton" onclick="handleLoginLogout()"></button>
+    </form>
+  </header>
+
+  <script>
+	  document.addEventListener('DOMContentLoaded', (event) => {
+	    fetch('/check', { 
+	      method: 'GET', 
+	      credentials: 'include'  // 쿠키를 포함해서 요청을 보냄
+	    })
+	    .then(res => {
+	      const loginButton = document.getElementById('loginButton');
+	      if (res.ok) {
+	        loginButton.innerText = '로그아웃';
+	      } else {
+	        // 로그인 상태가 아니면 로그인 페이지로 리디렉션
+	        window.location.href = '/login';
+	      }
+	    });
+	  });
+	  
+	  function handleLoginLogout() {
+	    const loginButton = document.getElementById('loginButton');
+	    if (loginButton.innerText === '로그아웃') {
+	      // 로그아웃 처리
+	      fetch('/logout', {
+	        method: 'POST',
+	        credentials: 'include'
+	      }).then(res => {
+	        if (res.ok) {
+	          // 로그아웃 성공 시 페이지 리로드
+	          window.location.reload(true);
+	        }
+	      });
+	    } else {
+	      // 로그인 페이지로 이동
+	      window.location.href = '/login';
+	    }
+	  }
+	</script>
+</body> 
+</html>
