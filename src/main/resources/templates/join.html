@@ -9,7 +9,7 @@
 <body>
   <div class="container">
     <button class="logo_btn" id="logo" th:onclick="'goToMainpage()'">
-      <img th:src="@{/image/logo.png}" alt="로고">
+      <img th:src="@{/logo/logo.png}" alt="로고">
     </button>
     <form id="joinForm" th:action="@{/join}" method="post">
       <input type="text" name="username" id="username" placeholder="아이디" autofocus required>

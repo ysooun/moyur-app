@@ -20,6 +20,12 @@ body {
   border: transparent;
   width: 100px;
   height: 38px;
+  background-color: white;
+}
+
+.logo_btn img {
+  width: 100%;  /* 이미지를 버튼 크기에 맞춤 */
+  height: auto; /* 비율 유지 */
 }
 
 form {
