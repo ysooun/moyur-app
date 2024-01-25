@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cafe Page</title>
+</head>
+<body>
+    <div class="cafe">
+        <h2>카페 정보</h2>
+        <div id="cafe-container">
+		    <div th:each="cafe : ${cafes}" class="cafe-card">
+                <div>
+                    <img th:src="${cafe.imageUrl}" class="cafe-image">
+                </div>
+                <button class="prev" onclick="changeSlide(-1, 1)">&#10094;</button>
+        		<button class="next" onclick="changeSlide(1, 1)">&#10095;</button>
+                <div>
+                    <span th:text="${cafe.username}" class="user-info"></span>
+                </div>
+                <div>
+                    <span th:text="${cafe.likes}"></span>
+                    <button class="like-button" onclick="likeClicked()">좋아요</button>
+                </div>
+		    </div>
+            <div th:each="cafe, iterStat : ${cafes}" id="myModal" class="modal" data-card-index="1">
+                <span class="close" onclick="closeModal">&times;</span>
+                <img th:src="${cafe.imageUrl}" class="cafe-modal-image">
+                <button class="modal-prev" onclick="changeSlideInModal(-1, 1)">&#10094;</button>
+      			<button class="modal-next" onclick="changeSlideInModal(1, 1)">&#10095;</button>
+            </div>
+		</div>
+    </div>
+</body>
+</html>

@@ -58,19 +58,16 @@ public class SecurityConfig {
 
         http
                 .authorizeHttpRequests((auth) -> auth
-                        .requestMatchers("/login", "/", "/join", "/check", "/logout").permitAll()
-                        .requestMatchers("logo/**", "js/**", "css/**", "icon/**").permitAll()
-						.requestMatchers("/admin").hasRole("ADMIN")
-						.requestMatchers("/user").hasRole("USER")
-                        .anyRequest().authenticated());
+                		.requestMatchers("/admin").hasRole("ADMIN")
+                        .requestMatchers("/profile").hasRole("USER")
+                        .anyRequest().permitAll());
         http	
         		.formLogin((formLogin) -> formLogin
 		                .loginPage("/login")
 		                .defaultSuccessUrl("/"))
         		.logout((logout) -> logout
 		                .logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
-		                .logoutSuccessUrl("/")
-		                .invalidateHttpSession(true));
+		                .logoutSuccessUrl("/"));
         http
         		.addFilterBefore(new JWTFilter(jwtUtil), LoginFilter.class);
         

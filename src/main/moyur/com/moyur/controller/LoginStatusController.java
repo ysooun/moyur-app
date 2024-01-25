@@ -1,5 +1,7 @@
 package com.moyur.controller;
 
+import java.util.Collections;
+
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -17,10 +19,10 @@ public class LoginStatusController {
         if (cookies != null) {
             for (Cookie cookie : cookies) {
                 if (cookie.getName().equals("Authorization") && !cookie.getValue().isEmpty()) {
-                    return ResponseEntity.ok().build();  // 로그인 상태임을 응답
+                    return ResponseEntity.ok(Collections.singletonMap("status", "OK"));  // 로그인 상태임을 응답
                 }
             }
         }
-        return ResponseEntity.status(HttpStatus.UNAUTHORIZED).build();  // 로그인 상태가 아님을 응답
+        return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(Collections.singletonMap("status", "UNAUTHORIZED"));  // 로그인 상태가 아님을 응답
     }
 }

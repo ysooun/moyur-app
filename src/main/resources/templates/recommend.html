@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Recommend Page</title>
+    <script src="/js/recommendPageLoader.js"></script>
+</head>
+<body>
+    <div class="recommend" th:fragment="recommend">
+        <div class="scrollable-content">
+            <nav class="navigation">
+                <a class="recommend_btn" data-page="cafe">카페</a>
+                <a class="recommend_btn" data-page="store">팝업스토어</a>
+                <a class="recommend_btn" data-page="show">공연</a>
+                <a class="recommend_btn" data-page="showing">전시</a>
+                <a class="recommend_btn" data-page="park">파크</a>
+                <a class="recommend_btn" data-page="exhibit">개인전시</a>
+                <a class="recommend_btn" data-page="performance">개인공연</a>
+            </nav>
+        </div>
+    </div>
+    <div id="dynamicContent">
+    </div>
+</body>
+</html>

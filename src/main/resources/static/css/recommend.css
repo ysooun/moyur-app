@@ -1,0 +1,20 @@
+.navigation {
+    text-align: center;
+}
+
+/* 링크 밑줄 제거 */
+.recommend_btn {
+    text-decoration: none;
+    padding: 0 20px; /* 글자 주변에 간격 추가 */
+    position: relative; /* 상대 위치 지정 */
+}
+
+/* 커서 호버 효과와 글자 크기 변화 */
+.recommend_btn:hover {
+    cursor: pointer;
+    font-size: 1.2em; /* 원하는 크기로 조절하세요 */
+    /* 밑줄 스타일 추가 */
+    text-decoration: underline;
+    text-decoration-thickness: 2px; /* 밑줄 두께 2px로 설정 */
+    text-underline-offset: 2px; /* 밑줄과 글자 사이 간격 2px로 설정 */
+}

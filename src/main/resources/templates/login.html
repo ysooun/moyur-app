@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link th:href="@{css/login.css}" rel="stylesheet" />
+  <link rel="stylesheet" th:href="@{/css/login.css}"  />
   <title>Login</title>
 </head>
 <body>
@@ -63,7 +63,7 @@
         data: JSON.stringify(formData),
         contentType: "application/json",
         success: function(response) {
-          window.location.href = "/"; // 리다이렉션할 URL을 설정
+          window.location.href = "/"// 리다이렉션할 URL을 설정
         },
         error: function(error) {
 		  console.log(error.responseText);  // 콘솔에 에러 메시지 출력

@@ -64,14 +64,14 @@ public class LoginFilter extends UsernamePasswordAuthenticationFilter {
 	   String role = auth.getAuthority();
 	
 	   // JWT 토큰 생성
-	   String token = jwtUtil.createJwt(username, role, 60L);
+	   String token = jwtUtil.createJwt(username, role, 600L);
 	
 	   // 쿠키에 토큰 저장
 	   Cookie cookie = new Cookie("Authorization", token);
-	   cookie.setHttpOnly(true);  // JavaScript에서 쿠키에 접근하지 못하도록 설정
-	   //cookie.setSecure(true);  // HTTPS에서만 쿠키를 전송하도록 설정
-	   cookie.setMaxAge(60);  // 쿠키의 유효 시간을 10시간으로 설정
-	   cookie.setPath("/");  // 쿠키의 경로를 루트로 설정
+	   cookie.setHttpOnly(true);
+	   //cookie.setSecure(true);
+	   cookie.setMaxAge(600);
+	   cookie.setPath("/");
 	
 	   response.addCookie(cookie);  // 응답에 쿠키 추가
 	}

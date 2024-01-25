@@ -3,64 +3,41 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="sidebar.css">
-  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet" />
   <title>sidebar</title>
 </head>
 <body>
-  <div class="sidebar">
+  <div class="sidebar" th:fragment="sidebar">
     <div class="user_sidebar">
-      <a class="sidebar_btn" th:href="@{/home}">
-        <img class="home" src="../image/home.png">
+      <a class="sidebar_btn" data-page="home">
+        <img class="home" th:src="@{/icon/home.png}">
         홈
       </a>
-      <a class="sidebar_btn" th:href="@{/profile}">
-        <img class="profile" src="../image/profile.png">
-        <span class="button-text">프로필</span>
+      <a class="sidebar_btn" data-page="profile">
+        <img class="profile" th:src="@{/icon/profile.png}">
+        프로필
       </a>
     </div>
-
     <hr>
-
     <div class="manu_sidebar">
-      <button class="sidebar_btn" th:href="@{/recommend}">
-        <img class="star" src="../image/star.png">
+      <a class="sidebar_btn" data-page="recommend">
+        <img class="star" th:src="@{/icon/star.png}">
         추천
-      </button>
-      <button class="sidebar_btn" th:href="@{/hot}">
-        <img class="hot" src="../image/hot.png">
-        인기 급상승
-      </button>
-      <button class="sidebar_btn" th:href="@{/new}">
-        <img class="new" src="../image/new.png">
-        신규
-      </button>
-      <button class="sidebar_btn" th:href="@{/keyword}">
-        <img class="hashtag" src="../image/hashtag.png">
-        키워드
-      </button>
-      <button class="sidebar_btn" th:href="@{/theme}">
-        <img class="theme" src="../image/thema.png">
-        테마
-      </button>
-      <button class="sidebar_btn" th:href="@{/schedule}">
-        <img class="schadule" src="../image/schadule.png">
-        일정
-      </button> 
-    </div>
+      </a>
 
+    </div>
     <hr>
-
     <div class="setting_sidebar">
-      <button class="sidebar_btn" th:href="@{/setting}">
-        <img class="setting" src="../image/setting.png">
+      <a class="sidebar_btn" data-page="setting">
+        <img class="setting" th:src="@{/icon/setting.png}">
         설정
-      </button> 
-      <button class="sidebar_btn" th:href="@{/servicecenter}">
-        <img class="servicecenter" src="../image/servicecenter.png">
+      </a> 
+      <a class="sidebar_btn" data-page="servicecenter"> 
+        <img class="servicecenter" th:src="@{/icon/servicecenter.png}">
         고객센터
-      </button> 
+      </a> 
     </div>
+  </div>
+  <div id="mainContent">
   </div>
 </body>
 </html>

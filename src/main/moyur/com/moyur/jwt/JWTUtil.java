@@ -1,13 +1,15 @@
 package com.moyur.jwt;
 
-import io.jsonwebtoken.Jwts;
-import org.springframework.beans.factory.annotation.Value;
-import org.springframework.stereotype.Component;
+import java.nio.charset.StandardCharsets;
+import java.util.Date;
 
 import javax.crypto.SecretKey;
 import javax.crypto.spec.SecretKeySpec;
-import java.nio.charset.StandardCharsets;
-import java.util.Date;
+
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.stereotype.Component;
+
+import io.jsonwebtoken.Jwts;
 
 
 @Component
@@ -34,7 +36,6 @@ public class JWTUtil {
 
         return Jwts.parser().verifyWith(secretKey).build().parseSignedClaims(token).getPayload().getExpiration().before(new Date());
     }
-
 
     public String createJwt(String username, String role, Long expiredMs) {
 
