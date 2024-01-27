@@ -12,8 +12,6 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.moyur.dto.CustomUserDetails;
-import com.moyur.entity.UserEntity;
 
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.http.Cookie;
@@ -52,28 +50,34 @@ public class LoginFilter extends UsernamePasswordAuthenticationFilter {
 	// 인증이 성공했을 때 호출되는 메서드
 	@Override
 	protected void successfulAuthentication(HttpServletRequest request, HttpServletResponse response, FilterChain chain, Authentication authentication) {
-	
-	   // 인증 정보에서 사용자 정보를 가져옴
-	   CustomUserDetails customUserDetails = (CustomUserDetails) authentication.getPrincipal();
-	   String username = customUserDetails.getUsername();
-	
-	   // 사용자의 권한을 가져옴
-	   Collection<? extends GrantedAuthority> authorities = authentication.getAuthorities();
-	   Iterator<? extends GrantedAuthority> iterator = authorities.iterator();
-	   GrantedAuthority auth = iterator.next();
-	   String role = auth.getAuthority();
-	
-	   // JWT 토큰 생성
-	   String token = jwtUtil.createJwt(username, role, 600L);
-	
-	   // 쿠키에 토큰 저장
-	   Cookie cookie = new Cookie("Authorization", token);
-	   cookie.setHttpOnly(true);
-	   //cookie.setSecure(true);
-	   cookie.setMaxAge(600);
-	   cookie.setPath("/");
-	
-	   response.addCookie(cookie);  // 응답에 쿠키 추가
+	    // 인증 정보에서 사용자 정보를 가져옴
+	    Object principal = authentication.getPrincipal();
+
+	    if (principal instanceof CustomUserDetails) {
+	        CustomUserDetails customUserDetails = (CustomUserDetails) principal;
+	        String username = customUserDetails.getUsername();
+
+	        // 사용자의 권한을 가져옴
+	        Collection<? extends GrantedAuthority> authorities = authentication.getAuthorities();
+	        Iterator<? extends GrantedAuthority> iterator = authorities.iterator();
+	        GrantedAuthority auth = iterator.next();
+	        String role = auth.getAuthority();
+
+	        // JWT 토큰 생성 (만료 시간을 5일로 설정)
+	        String token = jwtUtil.createJwt(username, role, 5 * 24 * 60 * 60 * 1000L);
+
+	        // 쿠키에 토큰 저장
+	        Cookie cookie = new Cookie("Authorization", token);
+	        cookie.setHttpOnly(true);
+	        cookie.setMaxAge(5 * 24 * 60 * 60); // 초 단위로 설정
+	        cookie.setPath("/");
+
+	        response.addCookie(cookie);  // 응답에 쿠키 추가
+	    } else {
+	        // CustomUserDetails가 아닌 다른 타입의 Principal일 경우 처리
+	        // 예를 들어, 다른 사용자 정보 클래스 등을 처리할 수 있음
+	        // 필요에 따라 수정
+	    }
 	}
 	
 	// 인증이 실패했을 때 호출되는 메서드

@@ -1,4 +1,4 @@
-package com.moyur.entity;
+package com.moyur.jwt;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -17,21 +17,22 @@ public class UserEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     
-    private Long number;
+    private Long id;
     
 	private String username;
     private String password;
     private String email;
     private String role;
     
-    public Long getNumber() {
-		return number;
-	}
-	public void setNumber(Long number) {
-		this.number = number;
-	}
     
-    public String getUsername() {
+    
+    public Long getId() {
+		return id;
+	}
+	public void setId(Long id) {
+		this.id = id;
+	}
+	public String getUsername() {
 		return username;
 	}
 	public void setUsername(String username) {

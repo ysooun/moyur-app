@@ -90,6 +90,12 @@
 	        <version>0.12.3</version>
 	        <scope>runtime</scope>
 	    </dependency>
+	    
+	    <dependency>
+		    <groupId>com.amazonaws</groupId>
+		    <artifactId>aws-java-sdk-s3</artifactId>
+		    <version>1.12.645</version>
+		</dependency>
 		
 	</dependencies>
 

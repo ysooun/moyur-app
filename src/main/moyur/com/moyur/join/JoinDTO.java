@@ -1,4 +1,4 @@
-package com.moyur.dto;
+package com.moyur.join;
 
 import lombok.Getter;
 import lombok.Setter;

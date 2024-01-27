@@ -9,16 +9,15 @@
   <link rel="stylesheet" th:href="@{/css/header.css}" />
   <link rel="stylesheet" th:href="@{/css/sidebar.css}" />
   <link rel="stylesheet" th:href="@{/css/recommend.css}" />
-
   
-  <script src="/js/header.js"></script>
-  <script src="/js/sidebarPageLoader.js"></script>
- 
   <title>페이지 제목</title>
 </head>
 <body>
   <div th:replace="~{header :: header}"></div>
   <div th:replace="~{sidebar :: sidebar}"></div>
   <div id="mainContent">
+	  
+  <script src="/js/header.js"></script>
+  <script src="/js/sidebarPageLoader.js"></script>
 </body>
 </html>

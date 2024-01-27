@@ -1,6 +1,6 @@
 package com.moyur.cafe;
 
-import com.moyur.entity.UserEntity;
+import com.moyur.jwt.UserEntity;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -44,7 +44,7 @@ public class CafeEntity {
 	}
 
 	@ManyToOne
-    @JoinColumn(name = "user_cafe") // users 테이블과 card 테이블의 관계 설정
+    @JoinColumn(name = "user_cafe") // users 테이블과 cafe 테이블의 관계 설정
     private UserEntity user;
 	
 	public UserEntity getUser() {

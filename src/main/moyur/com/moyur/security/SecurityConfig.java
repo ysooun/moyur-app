@@ -1,4 +1,4 @@
-package com.moyur.config;
+package com.moyur.security;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -59,7 +59,7 @@ public class SecurityConfig {
         http
                 .authorizeHttpRequests((auth) -> auth
                 		.requestMatchers("/admin").hasRole("ADMIN")
-                        .requestMatchers("/profile").hasRole("USER")
+                        .requestMatchers("/profile").authenticated()
                         .anyRequest().permitAll());
         http	
         		.formLogin((formLogin) -> formLogin

@@ -7,9 +7,6 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.filter.OncePerRequestFilter;
 
-import com.moyur.dto.CustomUserDetails;
-import com.moyur.entity.UserEntity;
-
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.Cookie;
@@ -27,6 +24,8 @@ public class JWTFilter extends OncePerRequestFilter {
     @Override
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain) throws ServletException, IOException {
         String requestURI = request.getRequestURI();
+        
+        System.out.println("Request URI: " + requestURI);
 
         // 특정 경로에 대해서만 인증을 요구합니다.
         if (isProtectedUrl(requestURI)) {
@@ -40,6 +39,8 @@ public class JWTFilter extends OncePerRequestFilter {
                     }
                 }
             }
+            
+            System.out.println("Token: " + token);
 
             if (token == null || jwtUtil.isExpired(token)) {
                 System.out.println("No token or token expired");
@@ -69,6 +70,6 @@ public class JWTFilter extends OncePerRequestFilter {
         // 인증이 필요한 URL 패턴을 명시합니다.
         return requestURI.startsWith("/admin") ||
                requestURI.startsWith("/profile");
-               // ... 기타 보호가 필요한 경로들
+
     }
 }

@@ -1,4 +1,4 @@
-package com.moyur.controller;
+package com.moyur.jwt;
 
 import java.util.Collections;
 

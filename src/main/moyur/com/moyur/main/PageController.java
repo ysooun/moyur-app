@@ -1,4 +1,4 @@
-package com.moyur.controller;
+package com.moyur.main;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -23,11 +23,4 @@ public class PageController {
         return "login"; // 로그인 페이지 템플릿 이름
     }
 
-    @GetMapping("/join")
-    public String joinPage() {
-        // 회원 가입 페이지 로직
-        return "join"; // 회원 가입 페이지 템플릿 이름
-    }
-
-    // 다른 페이지에 대한 핸들러도 추가 가능
 }

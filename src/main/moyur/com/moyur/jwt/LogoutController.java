@@ -1,4 +1,4 @@
-package com.moyur.controller;
+package com.moyur.jwt;
 
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;

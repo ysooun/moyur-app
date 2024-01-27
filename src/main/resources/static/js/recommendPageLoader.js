@@ -9,8 +9,16 @@ $(document).ready(function() {
                 url: '/recommend/' + page, // 페이지 URL을 지정해야 합니다.
                 type: 'GET',
                 success: function(content) {
-                    // 가져온 카페 페이지 데이터를 화면에 표시
-                    $('#dynamicContent').html(content);
+                    // 서버로부터 받은 content를 파싱하여 .cafe-card 요소를 추출합니다.
+                    var cafeCards = $(content).find('.cafe-card');
+                    
+                    // #dynamicContent 요소의 내부 HTML을 비웁니다.
+                    $('#dynamicContent').empty();
+                    
+                    // 각 .cafe-card 요소를 #dynamicContent 요소에 추가합니다.
+                    cafeCards.each(function() {
+                        $('#dynamicContent').append(this);
+                    });
                 },
                 error: function(xhr, status, error) {
                     // 실패한 경우 에러 처리를 수행합니다.

@@ -1,13 +1,10 @@
-package com.moyur.service;
+package com.moyur.join;
 
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
-import com.moyur.dto.JoinDTO;
-import com.moyur.entity.UserEntity;
-import com.moyur.repository.UserRepository;
-import com.moyur.utils.EmailValidator;
-import com.moyur.utils.PasswordValidator;
+import com.moyur.jwt.UserEntity;
+import com.moyur.jwt.UserRepository;
 
 @Service
 public class JoinService {

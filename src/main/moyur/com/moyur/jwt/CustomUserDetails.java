@@ -1,12 +1,10 @@
-package com.moyur.dto;
+package com.moyur.jwt;
 
 import java.util.ArrayList;
 import java.util.Collection;
 
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
-
-import com.moyur.entity.UserEntity;
 
 public class CustomUserDetails  implements UserDetails {
 	
