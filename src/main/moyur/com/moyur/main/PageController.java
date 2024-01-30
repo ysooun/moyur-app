@@ -6,7 +6,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 @Controller
 public class PageController {
 
-    @GetMapping("/")
+    @GetMapping("/*")
     public String mainPage() {
         return "mainpage"; // 메인 페이지 템플릿 이름
     }

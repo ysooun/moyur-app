@@ -1,9 +1,18 @@
 package com.moyur.jwt;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import com.moyur.follower.FollowerEntity;
+import com.moyur.profile.ProfileEntity;
+
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
+import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
 import lombok.Getter;
 import lombok.Setter;
@@ -24,7 +33,14 @@ public class UserEntity {
     private String email;
     private String role;
     
+    @OneToOne(mappedBy = "user", cascade = CascadeType.ALL)
+    private ProfileEntity profile;
     
+    @OneToMany(mappedBy = "user")
+    private List<FollowerEntity> followers = new ArrayList<>();
+
+    @OneToMany(mappedBy = "follower")
+    private List<FollowerEntity> followings = new ArrayList<>(); 
     
     public Long getId() {
 		return id;
@@ -55,5 +71,26 @@ public class UserEntity {
 	}
 	public void setRole(String role) {
 		this.role = role;
+	}
+	
+	public ProfileEntity getProfile() {
+		return profile;
+	}
+	public void setProfile(ProfileEntity profile) {
+		this.profile = profile;
+	}
+	
+	public List<FollowerEntity> getFollowers() {
+		return followers;
+	}
+	public void setFollowers(List<FollowerEntity> followers) {
+		this.followers = followers;
+	}
+	
+	public List<FollowerEntity> getFollowings() {
+		return followings;
+	}
+	public void setFollowings(List<FollowerEntity> followings) {
+		this.followings = followings;
 	}
 }

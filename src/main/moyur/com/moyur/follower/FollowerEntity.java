@@ -1,4 +1,4 @@
-package com.moyur.cafe;
+package com.moyur.follower;
 
 import com.moyur.jwt.UserEntity;
 
@@ -11,15 +11,22 @@ import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 
 @Entity
-@Table(name = "cafe")
-public class CafeEntity {
+@Table(name = "followers")
+public class FollowerEntity {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private String imageUrl;
-    private int likes;
 
-    public Long getId() {
+    @ManyToOne
+    @JoinColumn(name = "user_id")
+    private UserEntity user;
+
+    @ManyToOne
+    @JoinColumn(name = "follower_id")
+    private UserEntity follower;
+
+	public Long getId() {
 		return id;
 	}
 
@@ -27,31 +34,19 @@ public class CafeEntity {
 		this.id = id;
 	}
 
-	public String getImageUrl() {
-		return imageUrl;
-	}
-
-	public void setImageUrl(String imageUrl) {
-		this.imageUrl = imageUrl;
-	}
-
-	public int getLikes() {
-		return likes;
-	}
-
-	public void setLikes(int likes) {
-		this.likes = likes;
-	}
-
-	@ManyToOne
-    @JoinColumn(name = "user_cafe") // users 테이블과 cafe 테이블의 관계 설정
-    private UserEntity user;
-	
 	public UserEntity getUser() {
 		return user;
 	}
 
 	public void setUser(UserEntity user) {
 		this.user = user;
+	}
+
+	public UserEntity getFollower() {
+		return follower;
+	}
+
+	public void setFollower(UserEntity follower) {
+		this.follower = follower;
 	}
 }

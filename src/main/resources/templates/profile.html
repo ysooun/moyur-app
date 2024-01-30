@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>프로필</title>
+    <!-- 필요한 CSS 및 JavaScript 파일 링크 -->
+</head>
+<body>
+    <div id="profile">
+        <h2>프로필 사진</h2>
+        <span id="username" th:text="${username}"></span>
+        <img id="profileImage" th:src="${profileImageUrl}" alt="프로필 사진" />
+        <input type="file" id="profileUpload" onchange="uploadProfilePhoto()">
+        <button id="followButton" data-username="${username}">Follow</button>
+    </div>
+	
+	<button onclick="openImageUploadModal()">사진 업로드</button>
+	
+    <div id="imageUploadModal" style="display: none;">
+	    <h2>사진 업로드</h2>
+	    <input type="file" id="modalImageUpload">
+	    <select id="modalImageType">
+	        <option value="type1">유형 1</option>
+	        <option value="type2">유형 2</option>
+	        <!-- 기타 사진 유형 -->
+	    </select>
+	    <button onclick="uploadImage()">이미지 업로드</button>
+	    <button onclick="closeImageUploadModal()">닫기</button>
+	</div>
+
+    <div id="uploadedImage">
+        <!-- 업로드된 이미지 또는 상태 메시지 표시 -->
+    </div>
+
+    <script src="/js/profile.js"></script>
+    <script src="/js/follower.js"></script>
+</body>
+</html>

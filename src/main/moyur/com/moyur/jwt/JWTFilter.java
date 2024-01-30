@@ -70,6 +70,5 @@ public class JWTFilter extends OncePerRequestFilter {
         // 인증이 필요한 URL 패턴을 명시합니다.
         return requestURI.startsWith("/admin") ||
                requestURI.startsWith("/profile");
-
     }
 }

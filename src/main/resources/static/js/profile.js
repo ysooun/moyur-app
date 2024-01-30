@@ -1,21 +1,40 @@
-$(document).ready(function() {
-    var username = 'user1'; // 사용자 이름 설정
-    $.ajax({
-        url: '/profile/' + username, // URL에 사용자 이름 포함
-        type: 'GET',
-        success: function(cards) {
-            // 가져온 카드 데이터를 화면에 표시
-            cards.forEach(function(card) {
-                var cardHtml = '<div class="card">' +
-                    '<img src="' + card.imageUrl + '" alt="카드 이미지">' +
-                    '<p>좋아요: ' + card.likes + '</p>' +
-                    '</div>';
+function openImageUploadModal() {
+    document.getElementById('imageUploadModal').style.display = 'block';
+}
 
-                $('#dynamicContent').append(cardHtml);
-            });
-        },
-        error: function(xhr, status, error) {
-            console.error('Failed to fetch card data:', error);
-        }
+function closeImageUploadModal() {
+    document.getElementById('imageUploadModal').style.display = 'none';
+}
+
+async function uploadProfilePhoto() {
+    var username = document.getElementById('username').textContent;
+
+    // 프로필 이미지 가져오기
+    var fileInput = document.getElementById('profileUpload');
+    var file = fileInput.files[0];
+
+    // formData 생성
+    var formData = new FormData();
+    formData.append('profileDTO', new Blob([JSON.stringify({
+        username: username
+    })], {
+        type: "application/json"
+    }));
+    formData.append('image', file);
+
+    // 프로필 업데이트 요청 보내기
+    var updateResponse = await fetch('/profile/update', {
+        method: 'POST',
+        body: formData
     });
-});
+
+    if (!updateResponse.ok) {
+        throw new Error('Network response was not ok');
+    }
+
+    var data = await updateResponse.json();
+    console.log('Success:', data);
+
+    // 서버에서 새로운 이미지 URL을 반환하면 프로필 이미지를 업데이트합니다.
+    document.getElementById('profileImage').src = data.newImageUrl;
+}

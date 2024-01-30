@@ -11,16 +11,27 @@ import com.amazonaws.services.s3.AmazonS3ClientBuilder;
 
 @Configuration
 public class S3Config {
+	
+	private final String localLocation = "/Users/yoonsung/Desktop/s3/";
 
+    
     @Value("${cloud.aws.credentials.accessKey}")
     private String accessKey;
 
     @Value("${cloud.aws.credentials.secretKey}")
     private String secretKey;
+    
+    @Value("${cloud.aws.s3.bucket}")
+    private String bucket;
 
     @Value("${cloud.aws.region.static}")
     private String region;
     
+    
+    public String getLocalLocation() {
+        return localLocation;
+    }
+
     @Bean
     public AmazonS3Client amazonS3Client() {
 
