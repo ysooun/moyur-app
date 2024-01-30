@@ -12,7 +12,7 @@
         <img class="home" th:src="@{/icon/home.png}">
         홈
       </a>
-      <a class="sidebar_btn" data-page="profile">
+      <a class="sidebar_btn" th:data-page="@{|profile/${username}|}">
         <img class="profile" th:src="@{/icon/profile.png}">
         프로필
       </a>
