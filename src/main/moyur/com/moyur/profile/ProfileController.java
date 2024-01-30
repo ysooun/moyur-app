@@ -50,14 +50,6 @@ public class ProfileController {
         }
     }
 
-    @PostMapping("/create")
-    public ResponseEntity<ProfileEntity> createProfile(@RequestParam String username,
-                                                      @RequestParam MultipartFile profileImageUrl,
-                                                      @RequestParam String userType) {
-        ProfileEntity profile = profileService.createProfile(username, profileImageUrl, userType);
-        return new ResponseEntity<>(profile, HttpStatus.CREATED);
-    }
-
     @PostMapping("/profile/update")
     public ResponseEntity<?> updateProfile(@RequestPart("profileDTO") ProfileDTO profileDTO,
                                            @RequestPart("image") MultipartFile profileImage) {

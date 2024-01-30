@@ -93,6 +93,4 @@ public class ProfileEntity {
 	public void setFollowerCount(int followerCount) {
 		this.followerCount = followerCount;
 	}
-
-    
 }

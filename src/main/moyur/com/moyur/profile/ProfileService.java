@@ -31,29 +31,6 @@ public class ProfileService {
         this.s3Service = s3Service;
     }
     
-    public ProfileEntity createProfile(String username, MultipartFile profileImageFile, String userType) {
-        CustomUserDetails userDetails = getProfileByUsername(username);
-
-        UserEntity userEntity = userDetails.getUserEntity();
-
-        // S3에 이미지 업로드
-        String profileImageUrl;
-        try {
-            profileImageUrl = s3Service.s3Upload(profileImageFile);
-        } catch (IOException e) {
-            throw new RuntimeException("Image upload failed", e);
-        }
-        
-        // 프로필 생성
-        ProfileEntity profileEntity = new ProfileEntity();
-        profileEntity.setUser(userEntity);
-        profileEntity.setProfileImageUrl(profileImageUrl);
-        profileEntity.setUserType(UserType.NORMAL);
-
-        // 프로필 저장
-        return profileRepository.save(profileEntity);
-    }
-  
     public List<ProfileEntity> getAllProfiles() {
         return profileRepository.findAll();
     }
