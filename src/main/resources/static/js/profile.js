@@ -1,12 +1,4 @@
-function openImageUploadModal() {
-    document.getElementById('imageUploadModal').style.display = 'block';
-}
-
-function closeImageUploadModal() {
-    document.getElementById('imageUploadModal').style.display = 'none';
-}
-
-async function uploadProfilePhoto() {
+async function uploadProfileImage() {
     var username = document.getElementById('username').textContent;
 
     // 프로필 이미지 가져오기

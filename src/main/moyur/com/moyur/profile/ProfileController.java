@@ -10,7 +10,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RequestPart;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -38,7 +37,6 @@ public class ProfileController {
                 model.addAttribute("username", username);
                 model.addAttribute("role", role);
 
-                // 프로필 템플릿을 보여주는 Thymeleaf 템플릿 경로를 리턴
                 return "profile";
             } else {
                 // 다른 권한의 경우에도 처리 가능

@@ -7,6 +7,7 @@ import com.moyur.follower.FollowerEntity;
 import com.moyur.profile.ProfileEntity;
 
 import jakarta.persistence.CascadeType;
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -25,10 +26,11 @@ public class UserEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    
     private Long id;
     
-	private String username;
+    @Column(unique = true)
+    private String username;
+    
     private String password;
     private String email;
     private String role;

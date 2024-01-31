@@ -9,7 +9,7 @@
         <h2>프로필 사진</h2>
         <span id="username" th:text="${username}"></span>
         <img id="profileImage" th:src="${profileImageUrl}" alt="프로필 사진" />
-        <input type="file" id="profileUpload" onchange="uploadProfilePhoto()">
+        <input type="file" id="profileUpload" onchange="uploadProfileImage()">
         <button id="followButton" data-username="${username}">Follow</button>
     </div>
 	
@@ -19,8 +19,8 @@
 	    <h2>사진 업로드</h2>
 	    <input type="file" id="modalImageUpload">
 	    <select id="modalImageType">
-	        <option value="type1">유형 1</option>
-	        <option value="type2">유형 2</option>
+	        <option value="cafe">카페</option>
+	        <option value="popup">팝업스토어</option>
 	        <!-- 기타 사진 유형 -->
 	    </select>
 	    <button onclick="uploadImage()">이미지 업로드</button>
@@ -33,5 +33,6 @@
 
     <script src="/js/profile.js"></script>
     <script src="/js/follower.js"></script>
+    <script src="/js/imageUpload.js"></script>
 </body>
 </html>
