@@ -58,8 +58,8 @@ public class SecurityConfig {
 
         http
                 .authorizeHttpRequests((auth) -> auth
-                		.requestMatchers("/admin").hasRole("ADMIN")
-                        .requestMatchers("/profile").authenticated()
+                		.requestMatchers("/profile/**").authenticated()
+                		.requestMatchers("/admin/**").hasRole("ADMIN")
                         .anyRequest().permitAll());
         http	
         		.formLogin((formLogin) -> formLogin

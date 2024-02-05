@@ -50,7 +50,9 @@ function unfollow(btn) {
 }
 
 // 페이지 로드 시 팔로우 버튼 상태 업데이트
-window.onload = function() {
+document.addEventListener('DOMContentLoaded', function() {
     var btn = document.getElementById('followButton'); // 팔로우 버튼 엘리먼트
-    updateFollowButton(btn);
-};
+    if (btn) { // 팔로우 버튼이 존재하는지 확인
+        updateFollowButton(btn);
+    }
+});

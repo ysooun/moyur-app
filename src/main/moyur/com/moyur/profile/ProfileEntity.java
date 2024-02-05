@@ -19,7 +19,7 @@ import lombok.Builder;
 @Table(name = "profiles")
 public class ProfileEntity {
 	
-    @Id
+	@Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     
@@ -28,23 +28,16 @@ public class ProfileEntity {
     private UserEntity user;
 
     @Column(name = "profileImageUrl")
-    private String profileImageUrl;
+    private String profileImageUrl = "기본_이미지_URL";
+    
+    @Column(name = "biography")
+    private String biography = "기본 바이오";
 
-    @Enumerated(EnumType.STRING)
+	@Enumerated(EnumType.STRING)
     @Column(name = "userType")
     private UserType userType = UserType.NORMAL;
     
     private int followerCount;
-
-    public void increaseFollowerCount() {
-        this.followerCount++;
-        updateUserType();
-    }
-
-    public void decreaseFollowerCount() {
-        this.followerCount--;
-        updateUserType();
-    }
 
     private void updateUserType() {
         if (this.followerCount >= 10000) {
@@ -77,6 +70,13 @@ public class ProfileEntity {
 	public void setProfileImageUrl(String profileImageUrl) {
 		this.profileImageUrl = profileImageUrl;
 	}
+	
+	public String getBiography() {
+		return biography;
+	}
+	public void setBiography(String biography) {
+		this.biography = biography;
+	}
 
 	public UserType getUserType() {
 		return userType;
@@ -93,4 +93,13 @@ public class ProfileEntity {
 	public void setFollowerCount(int followerCount) {
 		this.followerCount = followerCount;
 	}
+	public void increaseFollowerCount() {
+        this.followerCount++;
+        updateUserType();
+    }
+
+    public void decreaseFollowerCount() {
+        this.followerCount--;
+        updateUserType();
+    }
 }

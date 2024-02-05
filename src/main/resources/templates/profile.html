@@ -2,35 +2,56 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
     <title>프로필</title>
-    <!-- 필요한 CSS 및 JavaScript 파일 링크 -->
+    <link rel="stylesheet" href="/css/profile.css"> 
 </head>
 <body>
     <div id="profile">
-        <h2>프로필 사진</h2>
-        <span id="username" th:text="${username}"></span>
-        <img id="profileImage" th:src="${profileImageUrl}" alt="프로필 사진" />
-        <input type="file" id="profileUpload" onchange="uploadProfileImage()">
-        <button id="followButton" data-username="${username}">Follow</button>
-    </div>
+	  <h1>프로필</h1>
+	  <div class="profile-container">
+	    <div>
+	      <img id="profileImage" th:src="${profileImageUrl}" alt="프로필 사진" />
+	      <label for="profileUpload" class="custom-file-upload">업로드</label>
+	      <input type="file" id="profileUpload" onchange="uploadProfileImage()" style="display: none;">
+	    </div>
 	
-	<button onclick="openImageUploadModal()">사진 업로드</button>
-	
-    <div id="imageUploadModal" style="display: none;">
-	    <h2>사진 업로드</h2>
-	    <input type="file" id="modalImageUpload">
-	    <select id="modalImageType">
-	        <option value="cafe">카페</option>
-	        <option value="popup">팝업스토어</option>
-	        <!-- 기타 사진 유형 -->
-	    </select>
-	    <button onclick="uploadImage()">이미지 업로드</button>
-	    <button onclick="closeImageUploadModal()">닫기</button>
+	    <div>
+	      <h2>
+	        <div>
+	          <span id="username" th:text="${username}"></span> 
+	          <span id="userType">일반</span>
+	        </div>
+	        <button id="followButton" data-username="${username}">Follow</button>
+	      </h2>
+	      <div>
+	        <textarea id="biography" placeholder="자기소개를 입력해주세요."></textarea>
+	      </div>
+	      <div>
+	        <button id="imageUploadButton" onclick="openImageUploadModal()">사진 업로드</button>
+	      </div>
+	    </div>
+	  </div>
 	</div>
 
-    <div id="uploadedImage">
-        <!-- 업로드된 이미지 또는 상태 메시지 표시 -->
-    </div>
+    <div id="imageUploadModal">
+	    <div>
+	        <h2>사진 업로드</h2>
+	        <div id="preview"></div>
+	        <input type="file" id="modalImageUpload" onchange="previewFile()">
+	        <select id="modalImageType">
+	            <option value="cafe">카페</option>
+	            <option value="popup">팝업스토어</option>
+	            <!-- 기타 사진 유형 -->
+	        </select>
+	        <div class="button-container">
+	            <button onclick="uploadImage()">업로드</button>
+	            <button onclick="closeImageUploadModal()">닫기</button>
+	        </div>
+	    </div>
+	</div>
 
+    <div id="imageCard">
+    </div>
+    
     <script src="/js/profile.js"></script>
     <script src="/js/follower.js"></script>
     <script src="/js/imageUpload.js"></script>

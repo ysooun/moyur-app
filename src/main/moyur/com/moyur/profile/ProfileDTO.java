@@ -1,24 +1,23 @@
 package com.moyur.profile;
 
-import org.springframework.web.multipart.MultipartFile;
-
 public class ProfileDTO {
-
-    private MultipartFile profileImageUrl;
+    private String profileImageUrl;
     private String username;
     private String userType;
+    private String biography;
 
-    public ProfileDTO(MultipartFile profileImageUrl, String username, String imageType) {
+    public ProfileDTO(String profileImageUrl, String username, String userType, String biography) {
         this.profileImageUrl = profileImageUrl;
         this.username = username;
-        this.userType = imageType;
+        this.userType = userType;
+        this.biography = biography;
     }
 
-	public MultipartFile getProfileImageUrl() {
+	public String getProfileImageUrl() {
 		return profileImageUrl;
 	}
 
-	public void setProfileImageUrl(MultipartFile profileImageUrl) {
+	public void setProfileImageUrl(String profileImageUrl) {
 		this.profileImageUrl = profileImageUrl;
 	}
 
@@ -37,5 +36,12 @@ public class ProfileDTO {
 	public void setUserType(String userType) {
 		this.userType = userType;
 	}
-    
+
+	public String getBiography() {
+		return biography;
+	}
+
+	public void setBiography(String biography) {
+		this.biography = biography;
+	}  
 }

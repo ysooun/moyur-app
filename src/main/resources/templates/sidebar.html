@@ -1,43 +1,42 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org" lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>sidebar</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>sidebar</title>
 </head>
 <body>
-  <div class="sidebar" th:fragment="sidebar">
-    <div class="user_sidebar">
-      <a class="sidebar_btn" data-page="home">
-        <img class="home" th:src="@{/icon/home.png}">
-        홈
-      </a>
-      <a class="sidebar_btn" th:data-page="@{|profile/${username}|}">
-        <img class="profile" th:src="@{/icon/profile.png}">
-        프로필
-      </a>
+    <div class="sidebar" th:fragment="sidebar">
+        <div class="user_sidebar">
+            <a class="sidebar_btn" data-page="home">
+                <img class="home" th:src="@{/icon/home.png}">
+                홈
+            </a>
+           <a class="sidebar_btn" th:href="@{|/profile/${username}|}">
+			    <img class="profile" th:src="@{/icon/profile.png}">
+			    프로필
+			</a>
+        </div>
+        <hr>
+        <div class="manu_sidebar">
+            <a class="sidebar_btn" data-page="recommend">
+                <img class="star" th:src="@{/icon/star.png}">
+                추천
+            </a>
+        </div>
+        <hr>
+        <div class="setting_sidebar">
+            <a class="sidebar_btn" data-page="setting">
+                <img class="setting" th:src="@{/icon/setting.png}">
+                설정
+            </a> 
+            <a class="sidebar_btn" data-page="servicecenter"> 
+                <img class="servicecenter" th:src="@{/icon/servicecenter.png}">
+                고객센터
+            </a> 
+        </div>
     </div>
-    <hr>
-    <div class="manu_sidebar">
-      <a class="sidebar_btn" data-page="recommend">
-        <img class="star" th:src="@{/icon/star.png}">
-        추천
-      </a>
-
+    <div id="mainContent">
     </div>
-    <hr>
-    <div class="setting_sidebar">
-      <a class="sidebar_btn" data-page="setting">
-        <img class="setting" th:src="@{/icon/setting.png}">
-        설정
-      </a> 
-      <a class="sidebar_btn" data-page="servicecenter"> 
-        <img class="servicecenter" th:src="@{/icon/servicecenter.png}">
-        고객센터
-      </a> 
-    </div>
-  </div>
-  <div id="mainContent">
-  </div>
 </body>
 </html>

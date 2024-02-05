@@ -1,5 +1,6 @@
 package com.moyur.profile.imageupload;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.moyur.jwt.UserEntity;
 
 import jakarta.persistence.Entity;
@@ -9,8 +10,12 @@ import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
+import lombok.Getter;
+import lombok.Setter;
 
 @Entity
+@Getter
+@Setter
 @Table(name = "uploadImages")
 public class UploadEntity {
     @Id
@@ -19,6 +24,7 @@ public class UploadEntity {
 
     @ManyToOne
     @JoinColumn(name = "user_uploadImages")
+    @JsonIgnore
     private UserEntity user;
     
     private String imageUrl;

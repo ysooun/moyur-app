@@ -12,7 +12,6 @@ import jakarta.servlet.http.HttpServletRequest;
 
 @RestController
 public class LoginStatusController {
-
     @GetMapping("/check")
     public ResponseEntity<?> checkLoginStatus(HttpServletRequest request) {
         Cookie[] cookies = request.getCookies();

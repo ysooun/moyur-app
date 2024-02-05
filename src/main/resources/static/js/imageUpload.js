@@ -1,3 +1,30 @@
+document.addEventListener('DOMContentLoaded', function() {
+    loadImages();
+});
+
+function loadImages() {
+    var username = document.getElementById('username').textContent;
+
+    fetch('/profile/images/' + username)
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('Network response was not ok');
+            }
+            return response.json();
+        })
+        .then(imageUrls => {
+            var imageCardDiv = document.getElementById('imageCard');
+            imageCardDiv.innerHTML = ''; // Clear the div
+            imageUrls.forEach(url => {
+                var img = document.createElement('img');
+                img.src = url;
+                img.id = 'uploadedImage'; // Set the id
+                imageCardDiv.appendChild(img);
+            });
+        })
+        .catch(error => console.error('Error loading images:', error));
+}
+
 function openImageUploadModal() {
     document.getElementById('imageUploadModal').style.display = 'block';
 }
@@ -7,21 +34,13 @@ function closeImageUploadModal() {
 }
 
 async function uploadImage() {
-    // 폼 데이터 생성
-    const formData = new FormData();
-    const imageType = document.querySelector('#modalImageType').value;
-    
     var username = document.getElementById('username').textContent;
-    
-    formData.append('username', username); // 사용자 이름
-    formData.append('file', document.querySelector('#modalImageUpload').files[0]);  // 파일
-    formData.append('imageType', imageType); // 이미지 유형
+    var formData = createFormData(username);
 
     try {
-        // 서버에 파일 업로드 요청
         const response = await fetch('/profile/imageUpload', {
             method: 'POST',
-            body: formData
+            body: formData,
         });
 
         if (!response.ok) {
@@ -29,8 +48,43 @@ async function uploadImage() {
         }
 
         const data = await response.json();
-        console.log('Image uploaded successfully: ', data);
+        console.log('Image uploaded successfully:', data);
+
+        loadImages(); // Reload images after successful upload
+        closeImageUploadModal(); // Close the modal after successful upload
     } catch (error) {
-        console.error('Error:', error);
+        console.error('Error uploading image:', error);
+    }
+}
+
+function createFormData(username) {
+    const formData = new FormData();
+    const imageType = document.querySelector('#modalImageType').value;
+    const file = document.querySelector('#modalImageUpload').files[0];
+
+    // Correctly appending uploadDTO as a JSON blob
+    const uploadDTO = {
+        username: username,
+        imageType: imageType
+    };
+
+    formData.append('uploadDTO', new Blob([JSON.stringify(uploadDTO)], {type: 'application/json'}));
+    formData.append('file', file);
+
+    return formData;
+}
+
+function previewFile() {
+    const preview = document.querySelector('#preview');
+    const file = document.querySelector('#modalImageUpload').files[0];
+    const reader = new FileReader();
+
+    reader.addEventListener("load", function () {
+        // convert image file to base64 string
+        preview.style.backgroundImage = 'url(' + reader.result + ')';
+    }, false);
+
+    if (file) {
+        reader.readAsDataURL(file);
     }
 }

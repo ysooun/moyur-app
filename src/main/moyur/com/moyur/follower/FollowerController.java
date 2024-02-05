@@ -17,7 +17,6 @@ import org.springframework.web.bind.annotation.RestController;
 public class FollowerController {
     private final FollowerService followerService;
 
-    // 생성자에 @Autowired를 사용하여 FollowerService 주입
     public FollowerController(FollowerService followerService) {
         this.followerService = followerService;
     }

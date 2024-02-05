@@ -88,11 +88,4 @@ public class UserEntity {
 	public void setFollowers(List<FollowerEntity> followers) {
 		this.followers = followers;
 	}
-	
-	public List<FollowerEntity> getFollowings() {
-		return followings;
-	}
-	public void setFollowings(List<FollowerEntity> followings) {
-		this.followings = followings;
-	}
 }
