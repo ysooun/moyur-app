@@ -12,7 +12,6 @@ ENV AWS_SECRET_ACCESS_KEY=
 ENV S3_BUCKET_NAME=my-moyur-image
 ENV AWS_REGION=ap-northeast-2
 
-COPY https://github.com/ysooun/moyur-app.git /app.jar
 
 # 실행할 명령 지정
 ENTRYPOINT ["java","-jar","/app.jar"]
