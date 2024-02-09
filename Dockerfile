@@ -12,8 +12,10 @@ ENV AWS_SECRET_ACCESS_KEY=
 ENV S3_BUCKET_NAME=my-moyur-image
 ENV AWS_REGION=ap-northeast-2
 
+WORKDIR /app
 
-# 실행할 명령 지정
-ENTRYPOINT ["java","-jar","/app.jar"]
+COPY target/moyur-app-0.0.1-SNAPSHOT.jar /app/moyur-app.jar
+
+ENTRYPOINT ["java","-jar","/app/moyur-app.jar"]
 
 EXPOSE 8080
