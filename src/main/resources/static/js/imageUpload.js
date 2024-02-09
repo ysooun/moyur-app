@@ -57,6 +57,21 @@ async function uploadImage() {
     }
 }
 
+function previewFile() {
+    const preview = document.querySelector('#preview');
+    const file = document.querySelector('#modalImageUpload').files[0];
+    const reader = new FileReader();
+
+    reader.addEventListener("load", function () {
+        // convert image file to base64 string
+        preview.style.backgroundImage = 'url(' + reader.result + ')';
+    }, false);
+
+    if (file) {
+        reader.readAsDataURL(file);
+    }
+}
+
 function createFormData(username) {
     const formData = new FormData();
     const imageType = document.querySelector('#modalImageType').value;
@@ -74,17 +89,11 @@ function createFormData(username) {
     return formData;
 }
 
-function previewFile() {
-    const preview = document.querySelector('#preview');
-    const file = document.querySelector('#modalImageUpload').files[0];
-    const reader = new FileReader();
-
-    reader.addEventListener("load", function () {
-        // convert image file to base64 string
-        preview.style.backgroundImage = 'url(' + reader.result + ')';
-    }, false);
-
-    if (file) {
-        reader.readAsDataURL(file);
+document.getElementById('likeButton').addEventListener('click', function () {
+    var likeIcon = document.getElementById('likeIcon');
+    if (likeIcon.style.color === 'red') {
+        likeIcon.style.color = '';
+    } else {
+        likeIcon.style.color = 'red';
     }
-}
+});

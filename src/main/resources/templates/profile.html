@@ -24,6 +24,7 @@
 	      </h2>
 	      <div>
 	        <textarea id="biography" placeholder="자기소개를 입력해주세요."></textarea>
+	        <button id="submitBioBtn">제출</button>
 	      </div>
 	      <div>
 	        <button id="imageUploadButton" onclick="openImageUploadModal()">사진 업로드</button>
@@ -50,9 +51,14 @@
 	</div>
 
     <div id="imageCard">
-    </div>
+	    <img id="profileImage" src="profile.jpg" alt="Profile Image">
+	    <button id="likeButton">
+	        <span id="likeIcon">❤️</span>
+	    </button>
+	</div>
     
     <script src="/js/profile.js"></script>
+    <script src="/js/biography.js"></script>
     <script src="/js/follower.js"></script>
     <script src="/js/imageUpload.js"></script>
 </body>

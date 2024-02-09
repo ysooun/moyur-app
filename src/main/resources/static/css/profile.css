@@ -151,6 +151,8 @@ body {
 }
 
 #imageCard {
+	display: flex;
+    align-items: center;
 	max-width: 1200px;
 	margin: 0 auto;
 	display: flex;
@@ -167,4 +169,15 @@ body {
     border-radius: 8px;
     box-sizing: border-box;
     object-fit: cover;
+}
+
+#likeButton {
+    background: none;
+    border: none;
+    font-size: 2em;
+    cursor: pointer;
+}
+
+#likeButton:active #likeIcon {
+    color: red;
 }

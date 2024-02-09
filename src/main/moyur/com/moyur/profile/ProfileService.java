@@ -6,12 +6,11 @@ import java.util.List;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.moyur.aws.S3Service;
 import com.moyur.jwt.UserEntity;
 import com.moyur.jwt.UserRepository;
-
-import jakarta.transaction.Transactional;
 
 @Service
 public class ProfileService {
@@ -85,5 +84,12 @@ public class ProfileService {
         profileRepository.save(profileEntity);
         
         return profileImageUrl;
+    }
+    
+    @Transactional(readOnly = true)
+    public String getBiography(String username) {
+        return profileRepository.findByUser_Username(username)
+                .map(ProfileEntity::getBiography)
+                .orElseThrow(() -> new UsernameNotFoundException("User not found with username: " + username));
     }
 }

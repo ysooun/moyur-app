@@ -19,37 +19,37 @@ async function uploadProfileImage() {
     var formData = new FormData();
     formData.append('profileDTO', new Blob([JSON.stringify({
         username: username,
-        userType: userType,
-        biography: biography
+        userType: userType
     })], {
         type: "application/json"
     }));
     formData.append('image', file);
-
+    formData.append('biography', biography);
+    
     // 프로필 업데이트 요청 보내기
     try {
-	    var updateResponse = await fetch('/profile/upload', {
-	        method: 'POST',
-	        body: formData
-	    });
-	
-	    if (!updateResponse.ok) {
-	        throw new Error('Network response was not ok');
-	    }
-	
-	    var data = await updateResponse.json();
-	
-	    // newImageUrl 속성이 존재하는지 확인
-	    if (!data.newImageUrl) {
-	        throw new Error('Server response did not include newImageUrl');
-	    }
-	
-	    console.log('Success:', data);
-	
-	    var profileImage = document.getElementById('profileImage');
-	    profileImage.src = data.newImageUrl + '?t=' + new Date().getTime();
-	} catch (error) {
-	    console.error('Error:', error);
-	    alert('Failed to upload profile image');
-	}
+        var updateResponse = await fetch('/profile/upload', {
+            method: 'POST',
+            body: formData
+        });
+    
+        if (!updateResponse.ok) {
+            throw new Error('Network response was not ok');
+        }
+    
+        var data = await updateResponse.json();
+    
+        // newImageUrl 속성이 존재하는지 확인
+        if (!data.newImageUrl) {
+            throw new Error('Server response did not include newImageUrl');
+        }
+    
+        console.log('Success:', data);
+    
+        var profileImage = document.getElementById('profileImage');
+        profileImage.src = data.newImageUrl + '?t=' + new Date().getTime();
+    } catch (error) {
+        console.error('Error:', error);
+        alert('Failed to upload profile image');
+    }
 }

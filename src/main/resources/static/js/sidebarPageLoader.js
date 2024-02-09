@@ -5,7 +5,6 @@ document.addEventListener('DOMContentLoaded', function() {
         button.addEventListener('click', async function() {
             let page = this.getAttribute('data-page');
 
-            // 로그인한 사용자의 username을 사용하여 URL을 구성할 필요 없이 직접 경로 사용
             let dynamicUrl = '/' + page;
 
             console.log('Requested page:', dynamicUrl);

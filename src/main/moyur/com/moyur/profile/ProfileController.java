@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RequestPart;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -55,19 +56,23 @@ public class ProfileController {
         }
     }
 
-
-  
     @PostMapping("/upload")
-    public ResponseEntity<?> updateProfile(@RequestPart("profileDTO") ProfileDTO profileDTO,
-                                           @RequestPart("image") MultipartFile profileImage) {
+    public ResponseEntity<?> updateProfile(@RequestPart(name = "profileDTO", required = false) ProfileDTO profileDTO,
+                                           @RequestPart(name = "image", required = false) MultipartFile profileImage,
+                                           @RequestPart(name = "biography", required = false) String biography) {
         try {
             String username = profileDTO.getUsername();
             String userType = profileDTO.getUserType();
-            String biography = profileDTO.getBiography();
             String newImageUrl = profileService.uploadProfile(username, profileImage, userType, biography);
             return new ResponseEntity<>(Collections.singletonMap("newImageUrl", newImageUrl), HttpStatus.OK);
         } catch (Exception e) {
             return new ResponseEntity<>(Collections.singletonMap("message", "Failed to update profile. " + e.getMessage()), HttpStatus.INTERNAL_SERVER_ERROR);
         }
+    }
+    
+    @GetMapping("/getBio")
+    public ResponseEntity<?> getBiography(@RequestParam String username) {
+        String biography = profileService.getBiography(username);
+        return ResponseEntity.ok(Collections.singletonMap("biography", biography));
     }
 }
