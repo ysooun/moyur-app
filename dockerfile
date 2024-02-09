@@ -1,7 +1,7 @@
 FROM openjdk:23-slim
 
 # 환경 변수 선언
-ENV STAGE=staging
+ENV STAGE=stage
 ENV DB_HOST=
 ENV DB_PORT=
 ENV DB_USER=
