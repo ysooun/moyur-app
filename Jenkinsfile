@@ -49,7 +49,7 @@ spec:
     }
     post {
         success {
-            echo 'Image build and push to the registry has been completed successfully.'
+            echo 'Image build and push successfully.'
         }
     }
 }
