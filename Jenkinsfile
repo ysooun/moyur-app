@@ -33,7 +33,7 @@ spec:
                 script {
                     git branch: 'main',
                         credentialsId: 'github-credentials',
-                        url: 'https://github.com/yooee/moyur-app.git'
+                        url: 'https://github.com/ysooun/moyur-app.git'
                 }
             }
         }
@@ -41,7 +41,7 @@ spec:
             steps {
                 container('kaniko') {
                     sh '''
-                    /kaniko/executor --context git://github.com/yooee/moyur-app.git --dockerfile=Dockerfile --destination=renum/moyur:v1.0.0
+                    /kaniko/executor --context git://github.com/ysooun/moyur-app.git --dockerfile=Dockerfile --destination=renum/moyur:v1.0.0
                     '''
                 }
             }
