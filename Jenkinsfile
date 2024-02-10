@@ -23,7 +23,6 @@ spec:
         items:
           - key: .dockerconfigjson
             path: config.json
-
 '''
         }
     }
@@ -37,15 +36,19 @@ spec:
                 }
             }
         }
+        stage('Build JAR') {
+            steps {
+                container('kaniko') {
+                    sh 'mvn clean package'  // 또는 gradle build 등 빌드 명령어 사용
+                }
+            }
+        }
         stage('Build and Push Image') {
             steps {
                 container('kaniko') {
                     sh '''
-					    /kaniko/executor 
-					    --context /Users/yoonsung/eclipse-workspace/project/moyur-project 
-					    --dockerfile=/Users/yoonsung/eclipse-workspace/project/moyur-project/Dockerfile 
-					    --destination=renum/moyur:v1.0.0
-					'''
+                    /kaniko/executor --context . --dockerfile=Dockerfile --destination=renum/moyur:v1.0.0
+                    '''
                 }
             }
         }
