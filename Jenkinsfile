@@ -23,6 +23,7 @@ spec:
         items:
           - key: .dockerconfigjson
             path: config.json
+
 '''
         }
     }
@@ -36,18 +37,11 @@ spec:
                 }
             }
         }
-        stage('Build JAR') {
-            steps {
-                container('kaniko') {
-                    sh 'mvn clean package'  // 또는 gradle build 등 빌드 명령어 사용
-                }
-            }
-        }
         stage('Build and Push Image') {
             steps {
                 container('kaniko') {
                     sh '''
-                    /kaniko/executor --context . --dockerfile=Dockerfile --destination=renum/moyur:v1.0.0
+                    /kaniko/executor --context git://github.com/ysooun/moyur-app.git --dockerfile=Dockerfile --destination=renum/moyur:v1.0.0
                     '''
                 }
             }
@@ -55,7 +49,7 @@ spec:
     }
     post {
         success {
-            echo 'Image build successfully....'
+            echo 'Image build successfully...'
         }
     }
 }
