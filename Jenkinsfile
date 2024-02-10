@@ -41,7 +41,7 @@ spec:
             steps {
                 container('kaniko') {
                     sh '''
-                    /kaniko/executor --context git://github.com/ysooun/moyur-app.git --dockerfile=Dockerfile --destination=renum/moyur:v1.0.0
+                    /kaniko/executor --context /Users/yoonsung/eclipse-workspace/project/moyur-project --dockerfile=Dockerfile --destination=renum/moyur:v1.0.0
                     '''
                 }
             }
