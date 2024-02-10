@@ -16,8 +16,6 @@ spec:
     volumeMounts:
       - name: kaniko-secret
         mountPath: /kaniko/.docker
-      - name: build-context
-        mountPath: /kaniko/buildcontext
   volumes:
     - name: kaniko-secret
       secret:
@@ -25,9 +23,7 @@ spec:
         items:
           - key: .dockerconfigjson
             path: config.json
-    - name: build-context
-      persistentVolumeClaim:
-        claimName: build-context-claim
+
 '''
         }
     }
@@ -45,9 +41,7 @@ spec:
             steps {
                 container('kaniko') {
                     sh '''
-                    mvn clean package
-                    cp target/moyur-project-0.0.1-SNAPSHOT.jar /kaniko/buildcontext/
-                    /kaniko/executor --context /kaniko/buildcontext --dockerfile=Dockerfile --destination=renum/moyur:v1.0.0
+                    /kaniko/executor --context git://github.com/ysooun/moyur-app.git --dockerfile=Dockerfile --destination=renum/moyur:v1.0.0
                     '''
                 }
             }
@@ -55,7 +49,7 @@ spec:
     }
     post {
         success {
-            echo 'Image build successfully....'
+            echo 'Image build successfully...'
         }
     }
 }
