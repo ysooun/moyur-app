@@ -49,7 +49,7 @@ spec:
     }
     post {
         success {
-            echo 'Image build and push successfully.'
+            echo 'Image build successfully.'
         }
     }
 }
