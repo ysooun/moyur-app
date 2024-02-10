@@ -11,9 +11,7 @@ ENV AWS_SECRET_ACCESS_KEY=
 ENV S3_BUCKET_NAME=my-moyur-image
 ENV AWS_REGION=ap-northeast-2
 
-WORKDIR /app
-
-COPY target/app.jar /app/app.jar
+COPY target/app.jar /app.jar
 
 ENTRYPOINT ["java","-jar","/app.jar"]
 
