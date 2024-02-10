@@ -41,8 +41,7 @@ spec:
             steps {
                 container('kaniko') {
                     sh '''
-                    tar czf context.tar.gz -C /Users/yoonsung/eclipse-workspace/project/moyur-project/target moyur-project-0.0.1-SNAPSHOT.jar
-                    /kaniko/executor --context=/context.tar.gz --dockerfile=Dockerfile --destination=renum/moyur:v1.0.0
+                    /kaniko/executor --context /Users/yoonsung/eclipse-workspace/project/moyur-project --dockerfile=Dockerfile --destination=renum/moyur:v1.0.0
                     '''
                 }
             }
