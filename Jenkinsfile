@@ -23,7 +23,6 @@ spec:
         items:
           - key: .dockerconfigjson
             path: config.json
-
 '''
         }
     }
@@ -37,11 +36,25 @@ spec:
                 }
             }
         }
+        stage('Build JAR') {
+            steps {
+                container('kaniko') {
+                    sh 'mvn clean package'
+                }
+            }
+        }
+        stage('Copy JAR to Docker Build Context') {
+            steps {
+                container('kaniko') {
+                    sh 'cp target/moyur-project-0.0.1-SNAPSHOT.jar /kaniko/buildcontext/'
+                }
+            }
+        }
         stage('Build and Push Image') {
             steps {
                 container('kaniko') {
                     sh '''
-                    /kaniko/executor --context git://github.com/ysooun/moyur-app.git --dockerfile=Dockerfile --destination=renum/moyur:v1.0.0
+                    /kaniko/executor --context /kaniko/buildcontext --dockerfile=Dockerfile --destination=renum/moyur:v1.0.0
                     '''
                 }
             }
