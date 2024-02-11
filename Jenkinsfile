@@ -36,17 +36,11 @@ spec:
                 }
             }
         }
-        stage('Install Maven') {
-            steps {
-                container('kaniko') {
-                    sh 'apt-get update && apt-get install -y maven'
-                }
-            }
-        }
         stage('Build JAR') {
             steps {
-                container('kaniko') {
-                    sh 'mvn clean package'
+                script {
+                    def mvnHome = tool 'Maven'
+                    sh "${mvnHome}/bin/mvn clean package"
                 }
             }
         }
@@ -69,7 +63,7 @@ spec:
     }
     post {
         success {
-            echo 'Image build successfully.'
+            echo 'Image build successfully...'
         }
     }
 }
