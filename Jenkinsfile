@@ -36,6 +36,13 @@ spec:
                 }
             }
         }
+        stage('Install Maven') {
+            steps {
+                container('kaniko') {
+                    sh 'apt-get update && apt-get install -y maven'
+                }
+            }
+        }
         stage('Build JAR') {
             steps {
                 container('kaniko') {
